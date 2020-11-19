@@ -1,13 +1,18 @@
 defmodule AntedeguemonChecks.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: :antedeguemon_checks,
-      version: "0.1.0",
+      deps: deps(),
+      description: "@antedeguemon's Credo checks",
       elixir: "~> 1.10",
+      name: "AntedeguemonChecks",
+      package: package(),
       start_permanent: false,
-      deps: deps()
+      version: @version
     ]
   end
 
@@ -20,6 +25,13 @@ defmodule AntedeguemonChecks.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5"}
+    ]
+  end
+
+  defp package do
+    [
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/antedeguemon/antedeguemon_checks"}
     ]
   end
 end
