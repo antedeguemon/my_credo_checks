@@ -12,7 +12,8 @@ defmodule AntedeguemonChecks.MixProject do
       name: "AntedeguemonChecks",
       package: package(),
       start_permanent: false,
-      version: @version
+      version: @version,
+      escript: escript()
     ]
   end
 
@@ -24,7 +25,8 @@ defmodule AntedeguemonChecks.MixProject do
 
   defp deps do
     [
-      {:credo, "~> 1.5"}
+      {:credo, "~> 1.5"},
+      {:credo_naming, "~> 1.0"}
     ]
   end
 
@@ -33,5 +35,9 @@ defmodule AntedeguemonChecks.MixProject do
       licenses: ["Apache 2.0"],
       links: %{"GitHub" => "https://github.com/antedeguemon/antedeguemon_checks"}
     ]
+  end
+
+  defp escript do
+    [main_module: AntedeguemonChecks.CLI]
   end
 end
