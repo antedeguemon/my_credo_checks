@@ -2,14 +2,22 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
   use Credo.Check
 
   def run(source_file, params \\ []) do
-    issue_meta = IssueMeta.for(source_file, params)
+    ast = SourceFile.ast(source_file)
 
-    Credo.Code.prewalk(source_file, &traverse(&1, &2, issue_meta))
+    context = [
+      issue_meta: IssueMeta.for(source_file, params),
+      module_name: Credo.Code.Module.name(ast)
+    ]
+
+    Credo.Code.prewalk(ast, &traverse(&1, &2, context))
   end
 
-  defp traverse({:describe, _meta, [text, _block]} = ast, issues, issue_meta) do
+  defp traverse({:describe, _meta, [text, _block]} = ast, issues, context) do
     if function_description?(text) do
-      describe_issues = Credo.Code.prewalk(ast, &traverse_test(&1, &2, text, issue_meta))
+      describe_issues =
+        ast
+        |> Macro.unpipe()
+        |> Credo.Code.prewalk(&traverse_test(&1, &2, text, context))
 
       {ast, describe_issues ++ issues}
     else
@@ -17,19 +25,19 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     end
   end
 
-  defp traverse(ast, issues, _issue_meta) do
+  defp traverse(ast, issues, _context) do
     {ast, issues}
   end
 
-  defp traverse_test({:test, meta, block} = ast, describe_issues, text, issue_meta) do
+  defp traverse_test({:test, meta, block} = ast, describe_issues, text, context) do
     if parse_description(text) in fetch_calls(block) do
       {ast, describe_issues}
     else
-      {ast, [issue_for(test_text(block), text, meta, issue_meta) | describe_issues]}
+      {ast, [issue_for(test_text(block), text, meta, context) | describe_issues]}
     end
   end
 
-  defp traverse_test(ast, describe_issues, _text, _issue_meta) do
+  defp traverse_test(ast, describe_issues, _text, _context) do
     {ast, describe_issues}
   end
 
@@ -37,7 +45,9 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     String.match?(text, ~r/^(.*)\/[0-9]+/i)
   end
 
-  defp issue_for(trigger_test, trigger_describe, meta, issue_meta) do
+  defp issue_for(trigger_test, trigger_describe, meta, context) do
+    issue_meta = context[:issue_meta]
+
     format_issue(
       issue_meta,
       message:
@@ -54,7 +64,7 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     [function_text, arity_text] = String.split(text, "/")
     {arity, _} = Integer.parse(arity_text)
 
-    {function_text |> String.to_atom(), arity}
+    {String.to_atom(function_text), arity}
   end
 
   defp fetch_calls(block) do
@@ -63,15 +73,15 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     Enum.map(symbol_table, &remove_alias/1)
   end
 
-  defp remove_alias({{:., _line, [{:__aliases__, _, module}, function]}, arity}) do
-    {List.last(module), function, arity}
-  end
-
-  defp remove_alias(symbol), do: symbol
-
   defp filter_calls({symbol, _meta, block}, acc) when not is_nil(block) do
     {block, acc ++ [{symbol, Enum.count(block)}]}
   end
 
   defp filter_calls(ast, acc), do: {ast, acc}
+
+  defp remove_alias({{:., _line, [{:__aliases__, _, _module}, function]}, arity}) do
+    {function, arity}
+  end
+
+  defp remove_alias({symbol, arity}), do: {symbol, arity}
 end
