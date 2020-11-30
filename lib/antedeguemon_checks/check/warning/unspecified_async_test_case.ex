@@ -36,8 +36,8 @@ defmodule AntedeguemonChecks.Check.Warning.UnspecifiedAsyncTestCase do
     module |> Name.last() |> String.contains?("Case")
   end
 
-  defp should_report?(aliases, excluded_modules) do
-    use_name = Name.full(aliases)
+  defp should_report?([{:__aliases__, _meta, module} | _], excluded_modules) do
+    use_name = Name.full(module)
 
     excluded_modules
     |> Enum.any?(fn excluded_module ->
