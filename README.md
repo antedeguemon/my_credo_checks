@@ -1,6 +1,6 @@
 # antedeguemon_checks
 
-This is a colletion of my (highly experimental) Credo checks.
+This is a collection of my (highly experimental) Credo checks.
 
 ## Included checks
 
