@@ -68,10 +68,9 @@
         {AntedeguemonChecks.Check.Warning.RejectTags},
         {AntedeguemonChecks.Check.Warning.RedundantDelegateAlias},
         {AntedeguemonChecks.Check.Warning.UnspecifiedAsyncTestCase, [excluded: ["Credo.Test.Case"]]},
-
         {AntedeguemonChecks.Check.Consistency.ValidateDescribesArity},
 
-        # Naming checks
+        # Naming Check
         {CredoNaming.Check.Consistency.ModuleFilename},
 
         #
@@ -87,15 +86,8 @@
         #
         ## Design Checks
         #
-        # You can customize the priority of any check
-        # Priority values are: `low, normal, high, higher`
-        #
         {Credo.Check.Design.AliasUsage,
          [priority: :low, if_nested_deeper_than: 2, if_called_more_often_than: 0]},
-        # You can also customize the exit_status of each check.
-        # If you don't want TODO comments to cause `mix credo` to fail, just
-        # set this value to 0 (zero).
-        #
         {Credo.Check.Design.TagTODO, [exit_status: 2]},
         {Credo.Check.Design.TagFIXME, []},
 
@@ -174,20 +166,20 @@
         {Credo.Check.Readability.ImplTrue, false},
         {Credo.Check.Readability.MultiAlias, false},
         {Credo.Check.Readability.SeparateAliasRequire, false},
-        {Credo.Check.Readability.SinglePipe, false},
+        {Credo.Check.Readability.SinglePipe, []},
         {Credo.Check.Readability.Specs, false},
         {Credo.Check.Readability.StrictModuleLayout, false},
-        {Credo.Check.Readability.WithCustomTaggedTuple, false},
+        {Credo.Check.Readability.WithCustomTaggedTuple, []},
         {Credo.Check.Refactor.ABCSize, false},
         {Credo.Check.Refactor.AppendSingleItem, false},
-        {Credo.Check.Refactor.DoubleBooleanNegation, false},
+        {Credo.Check.Refactor.DoubleBooleanNegation, []},
         {Credo.Check.Refactor.ModuleDependencies, false},
         {Credo.Check.Refactor.NegatedIsNil, false},
         {Credo.Check.Refactor.PipeChainStart, false},
         {Credo.Check.Refactor.VariableRebinding, false},
-        {Credo.Check.Warning.LeakyEnvironment, false},
-        {Credo.Check.Warning.MapGetUnsafePass, false},
-        {Credo.Check.Warning.UnsafeToAtom, false}
+        {Credo.Check.Warning.LeakyEnvironment, []},
+        {Credo.Check.Warning.MapGetUnsafePass, []},
+        {Credo.Check.Warning.UnsafeToAtom, []}
 
         #
         # Custom checks can be created using `mix credo.gen.check`.

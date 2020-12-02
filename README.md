@@ -88,9 +88,12 @@ end
 This is useful because you don't need to install those checks (or even Credo)
 in the project.
 
-```
+```shell
 mix escript.build
 mv antedeguemon_checks ~/bin
+
+# and an alias to compare with master
+alias antedeguemon="git diff --name-only master | sed -e 's/^/--files-included=/' | xargs antedeguemon_checks"
 ```
 
 ## As a library
