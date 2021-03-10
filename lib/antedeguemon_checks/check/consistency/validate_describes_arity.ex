@@ -6,7 +6,8 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
 
     context = [
       issue_meta: IssueMeta.for(source_file, params),
-      module_name: Credo.Code.Module.name(ast)
+      module_name: Credo.Code.Module.name(ast),
+      whitelist: Params.get(params, :whitelist, [])
     ]
 
     Credo.Code.prewalk(ast, &traverse(&1, &2, context))
@@ -29,16 +30,18 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     {ast, issues}
   end
 
-  defp traverse_test({:test, meta, block} = ast, describe_issues, text, context) do
-    if parse_description(text) in fetch_calls(block) do
-      {ast, describe_issues}
+  defp traverse_test({:test, meta, block} = ast, issues, text, context) do
+    {function_name, arity} = parse_test_description(text)
+
+    if {function_name, arity} in fetch_calls(block) or function_name in context[:whitelist] do
+      {ast, issues}
     else
-      {ast, [issue_for(test_text(block), text, meta, context) | describe_issues]}
+      {ast, [issue_for(test_text(block), text, meta, context) | issues]}
     end
   end
 
-  defp traverse_test(ast, describe_issues, _text, _context) do
-    {ast, describe_issues}
+  defp traverse_test(ast, issues, _text, _context) do
+    {ast, issues}
   end
 
   defp function_description?(text) do
@@ -60,7 +63,7 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
   defp test_text([text | _]) when is_binary(text), do: text
   defp test_text(_), do: ""
 
-  defp parse_description(text) do
+  defp parse_test_description(text) do
     [function_text, arity_text] = String.split(text, "/")
     {arity, _} = Integer.parse(arity_text)
 

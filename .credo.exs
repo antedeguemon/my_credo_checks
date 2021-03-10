@@ -68,7 +68,7 @@
         {AntedeguemonChecks.Check.Warning.RejectTags},
         {AntedeguemonChecks.Check.Warning.RedundantDelegateAlias},
         {AntedeguemonChecks.Check.Warning.UnspecifiedAsyncTestCase, [excluded: ["Credo.Test.Case"]]},
-        {AntedeguemonChecks.Check.Consistency.ValidateDescribesArity},
+        {AntedeguemonChecks.Check.Consistency.ValidateDescribesArity, [whitelist: [:changeset]]},
 
         # Naming Check
         {CredoNaming.Check.Consistency.ModuleFilename},
