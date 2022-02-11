@@ -2,15 +2,9 @@
 
 This is a collection of my personal (and highly experimental) Credo checks.
 
-I use them when doing code reviews. It is an effort to automate checking
-[this pull request checklist](https://gist.github.com/antedeguemon/672ef7986f81e63377420853fcc7863e)
-items.
+## 1. Consistency.ValidateDescribesArity
 
-## Included checks
-
-### 1. Consistency.ValidateDescribesArity
-
-Checks if the test suite is using the describe/act spec from
+Checks if the test suite is following the describe/action spec from
 [betterspecs](https://www.betterspecs.org/).
 
 Example:
@@ -34,7 +28,7 @@ defmodule ModuleTest do
 end
 ```
 
-### 2. Warning.RedundantDelegateAlias
+## 2. Warning.RedundantDelegateAlias
 
 Checks if a `defdelegate` has a redundant `as` option.
 
@@ -52,12 +46,12 @@ defdelegate perform(id), to: Module, as: :perform
 
 ```
 
-### 3. Warning.RejectTags
+## 3. Warning.RejectTags
 
 Checks if a module has a `@tag`, `@moduletag` or `@describetag`, that are
 common left-over code.
 
-### 4. Warning.UnspecifiedAsyncnessTestCase
+## 4. Warning.UnspecifiedAsyncnessTestCase
 
 Checks if a test module has a `(.*)Case` import that does not explicitly
 defines its asyncness option.
@@ -79,36 +73,4 @@ defmodule ModuleTest do
   # this is going to raise a warning
   use MyProject.DataCase
 end
-```
-
-## Using antedeguemon_checks
-
-### As a script
-
-This is useful because you don't need to install those checks (or even Credo)
-in the project.
-
-```shell
-mix escript.build
-mv antedeguemon_checks ~/bin
-
-# and an alias to compare with master
-alias antedeguemon="git diff --name-only master | sed -e 's/^/--files-included=/' | xargs antedeguemon_checks"
-```
-
-## As a library
-
-Add `antedeguemon_checks` to your `mix.exs`:
-
-```elixir
-{:antedeguemon_checks, "~> 0.1"}
-```
-
-And use the custom checks in your `.credo.exs` file:
-
-```elixir
-{AntedeguemonChecks.Check.Warning.RejectTags},
-{AntedeguemonChecks.Check.Warning.RedundantDelegateAlias},
-{AntedeguemonChecks.Check.Warning.UnspecifiedAsyncTestCase, [excluded: ["Credo.Test.Case"]]},
-{AntedeguemonChecks.Check.Consistency.ValidateDescribesArity},
 ```
