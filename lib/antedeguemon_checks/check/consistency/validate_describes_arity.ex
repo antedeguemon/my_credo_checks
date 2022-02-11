@@ -1,5 +1,5 @@
 defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
-  use Credo.Check
+  use Credo.Check, param_defaults: [ignored_functions: []]
 
   def run(source_file, params \\ []) do
     ast = SourceFile.ast(source_file)
@@ -7,7 +7,7 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     context = [
       issue_meta: IssueMeta.for(source_file, params),
       module_name: Credo.Code.Module.name(ast),
-      whitelist: Params.get(params, :whitelist, [])
+      ignored_functions: Params.get(params, :ignored_functions, [])
     ]
 
     Credo.Code.prewalk(ast, &traverse(&1, &2, context))
@@ -33,7 +33,8 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
   defp traverse_test({:test, meta, block} = ast, issues, text, context) do
     {function_name, arity} = parse_test_description(text)
 
-    if {function_name, arity} in fetch_calls(block) or function_name in context[:whitelist] do
+    if {function_name, arity} in fetch_calls(block) or
+         function_name in context[:ignored_functions] do
       {ast, issues}
     else
       {ast, [issue_for(test_text(block), text, meta, context) | issues]}
@@ -64,7 +65,7 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
   defp test_text(_), do: ""
 
   defp parse_test_description(text) do
-    [function_text, arity_text] = String.split(text, "/")
+    [function_text, arity_text | _] = String.split(text, "/")
     {arity, _} = Integer.parse(arity_text)
 
     {String.to_atom(function_text), arity}

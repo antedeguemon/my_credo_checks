@@ -65,13 +65,15 @@
       #     {Credo.Check.Design.DuplicatedCode, false}
       #
       checks: [
-        {AntedeguemonChecks.Check.Warning.RejectTags},
-        {AntedeguemonChecks.Check.Warning.RedundantDelegateAlias},
+        #
+        ## Custom checks
+        #
+        {AntedeguemonChecks.Check.Readability.NoModule, []},
+        {AntedeguemonChecks.Check.Warning.DuplicatedAlias, []},
+        {AntedeguemonChecks.Check.Warning.RedundantDelegateAlias, []},
+        {AntedeguemonChecks.Check.Warning.RejectTags, []},
         {AntedeguemonChecks.Check.Warning.UnspecifiedAsyncTestCase, [excluded: ["Credo.Test.Case"]]},
-        {AntedeguemonChecks.Check.Consistency.ValidateDescribesArity, [whitelist: [:changeset]]},
-
-        # Naming Check
-        {CredoNaming.Check.Consistency.ModuleFilename},
+        {AntedeguemonChecks.Check.Consistency.ValidateDescribesArity, [ignored_functions: [:changeset]]},
 
         #
         ## Consistency Checks
