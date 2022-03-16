@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
+defmodule AntedeguemonChecks.Consistency.DescribeArity do
   use Credo.Check, param_defaults: [ignored_functions: []]
 
   def run(source_file, params \\ []) do
@@ -7,7 +7,7 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     context = [
       issue_meta: IssueMeta.for(source_file, params),
       module_name: Credo.Code.Module.name(ast),
-      ignored_functions: Params.get(params, :ignored_functions, [])
+      ignored_functions: Keyword.get(params, :ignored_functions, [])
     ]
 
     Credo.Code.prewalk(ast, &traverse(&1, &2, context))
@@ -81,11 +81,15 @@ defmodule AntedeguemonChecks.Check.Consistency.ValidateDescribesArity do
     {block, acc ++ [{symbol, Enum.count(block)}]}
   end
 
-  defp filter_calls(ast, acc), do: {ast, acc}
+  defp filter_calls(ast, acc) do
+    {ast, acc}
+  end
 
   defp remove_alias({{:., _line, [{:__aliases__, _, _module}, function]}, arity}) do
     {function, arity}
   end
 
-  defp remove_alias({symbol, arity}), do: {symbol, arity}
+  defp remove_alias({symbol, arity}) do
+    {symbol, arity}
+  end
 end

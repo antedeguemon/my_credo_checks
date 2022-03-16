@@ -1,11 +1,7 @@
-defmodule AntedeguemonChecks.Check.Warning.UnspecifiedAsyncTestCase do
-  use Credo.Check
+defmodule AntedeguemonChecks.Warning.UnspecifiedAsync do
+  use Credo.Check, param_defaults: [excluded: []]
 
   alias Credo.Code.Name
-
-  def param_defaults do
-    [excluded: []]
-  end
 
   def run(source_file, params \\ []) do
     excluded_modules = Params.get(params, :excluded, __MODULE__)

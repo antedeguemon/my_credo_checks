@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Check.Warning.RedundantDelegateAlias do
+defmodule AntedeguemonChecks.Warning.RedundantDelegateAlias do
   use Credo.Check
 
   def run(source_file, params \\ []) do

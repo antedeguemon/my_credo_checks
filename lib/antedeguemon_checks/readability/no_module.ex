@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Check.Readability.NoModule do
+defmodule AntedeguemonChecks.Readability.NoModule do
   use Credo.Check
 
   def run(source_file, params \\ []) do
@@ -23,5 +23,7 @@ defmodule AntedeguemonChecks.Check.Readability.NoModule do
     {ast, updated_issues}
   end
 
-  defp traverse(ast, issues, _issue_meta), do: {ast, issues}
+  defp traverse(ast, issues, _issue_meta) do
+    {ast, issues}
+  end
 end
