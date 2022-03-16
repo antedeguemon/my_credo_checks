@@ -1,5 +1,28 @@
 defmodule AntedeguemonChecks.Warning.UnspecifiedAsync do
-  use Credo.Check, param_defaults: [excluded: []]
+  use Credo.Check,
+    explanations: [
+      check: """
+      Test modules should define asyncness explictly for the imported test case
+      macros.
+
+      ```elixir
+        # Bad
+        defmodule ModuleTest do
+          use ExUnit.Case
+        end
+
+        # Good
+        defmodule ModuleTest do
+          use ExUnit.Case, async: false
+        end
+
+        defmodule ModuleTest do
+          use ExUnit.Case, async: true
+        end
+      ```
+      """
+    ],
+    param_defaults: [excluded: []]
 
   alias Credo.Code.Name
 

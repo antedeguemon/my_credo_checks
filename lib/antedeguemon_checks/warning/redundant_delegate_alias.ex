@@ -1,5 +1,22 @@
 defmodule AntedeguemonChecks.Warning.RedundantDelegateAlias do
-  use Credo.Check
+  use Credo.Check,
+    explanations: [
+      check: """
+      Definitions of `defdelegates` shouldn't have the `as` option when the target
+      function has the same name as the source function.
+
+      ```elixir
+        # Bad
+        defdelegate perform(id), to: Module, as: :perform
+
+        # Good
+        defdelegate perform(id), to: Module
+
+        # Good
+        defdelegate perform(id), to: Module, as: :perform_2
+      ```
+      """
+    ]
 
   def run(source_file, params \\ []) do
     issue_meta = IssueMeta.for(source_file, params)

@@ -2,75 +2,29 @@
 
 This is a collection of my personal (and highly experimental) Credo checks.
 
-## 1. Consistency.ValidateDescribesArity
+## Installation
 
-Checks if the test suite is following the describe/action spec from
-[betterspecs](https://www.betterspecs.org/).
-
-Example:
+1. Install `antedeguemon_checks` as a dependency:
 
 ```elixir
-defmodule ModuleTest do
-  # ...
-
-  describe "perform/1" do
-    # this is fine
-    test "is consistent" do
-      Module.perform(1)
-    end
-
-    # this is going to raise a warning
-    test "does not call perform/1" do
-      Module.perform(1, 2, 3)
-    end
-  end
-
+def deps do
+  [
+    {:antedeguemon_checks, "~> 0.1.2"}
+  ]
 end
 ```
 
-## 2. Warning.RedundantDelegateAlias
-
-Checks if a `defdelegate` has a redundant `as` option.
-
-Example:
+2. Add to your `.credo.exs` file:
 
 ```elixir
-# this is fine
-defdelegate perform(id), to: Module
-
-# this is fine
-defdelegate perform(id), to: Module, as: :perform_2
-
-# this is going to raise a warning
-defdelegate perform(id), to: Module, as: :perform
-
-```
-
-## 3. Warning.RejectTags
-
-Checks if a module has a `@tag`, `@moduletag` or `@describetag`, that are
-common left-over code.
-
-## 4. Warning.UnspecifiedAsyncnessTestCase
-
-Checks if a test module has a `(.*)Case` import that does not explicitly
-defines its asyncness option.
-
-```elixir
-defmodule ModuleTest do
-  # this is fine
-  use OtherModule
-
-  # this is fine
-  use ExUnit.Case, async: false
-
-  # this is fine
-  use ExUnit.Case, async: true
-
-  # this is going to raise a warning
-  use ExUnit.Case
-
-  # this is going to raise a warning
-  use MyProject.DataCase
-end
+# ...
+  checks: [
+    {AntedeguemonChecks.Consistency.DescribeArity, []},
+    {AntedeguemonChecks.Readability.NoModule, []},
+    {AntedeguemonChecks.Warning.DuplicatedAlias, []},
+    {AntedeguemonChecks.Warning.RedundantDelegateAlias, []},
+    {AntedeguemonChecks.Warning.RejectTags, []},
+    {AntedeguemonChecks.Warning.UnspecifiedAsync, []}
+    # ...
+  ]
 ```

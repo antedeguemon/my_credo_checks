@@ -1,5 +1,19 @@
 defmodule AntedeguemonChecks.Warning.RejectTags do
-  use Credo.Check, param_defaults: [forbidden_attributes: [:describetag, :tag, :moduletag]]
+  use Credo.Check,
+    explanations: [
+      check: """
+      Modules should not have @tag, @describetag, and @moduletag attributes.
+
+      ```elixir
+        # Bad
+        defmodule ModuleTest do
+          @tag :wip
+          test "..." do
+        end
+      ```
+      """
+    ],
+    param_defaults: [forbidden_attributes: [:describetag, :tag, :moduletag]]
 
   def run(source_file, params \\ []) do
     issue_meta = IssueMeta.for(source_file, params)
