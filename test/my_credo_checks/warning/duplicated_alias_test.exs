@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.DuplicatedAliasTest do
+defmodule MyCredoChecks.Warning.DuplicatedAliasTest do
   use Credo.Test.Case
 
   describe "ok" do
@@ -22,7 +22,7 @@ defmodule AntedeguemonChecks.Warning.DuplicatedAliasTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.DuplicatedAlias)
+      |> run_check(MyCredoChecks.Warning.DuplicatedAlias)
       |> refute_issues()
     end
 
@@ -34,7 +34,7 @@ defmodule AntedeguemonChecks.Warning.DuplicatedAliasTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.DuplicatedAlias)
+      |> run_check(MyCredoChecks.Warning.DuplicatedAlias)
       |> refute_issues()
     end
   end
@@ -48,7 +48,7 @@ defmodule AntedeguemonChecks.Warning.DuplicatedAliasTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.DuplicatedAlias)
+      |> run_check(MyCredoChecks.Warning.DuplicatedAlias)
       |> assert_issue()
     end
 
@@ -60,7 +60,7 @@ defmodule AntedeguemonChecks.Warning.DuplicatedAliasTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.DuplicatedAlias)
+      |> run_check(MyCredoChecks.Warning.DuplicatedAlias)
       |> assert_issue()
     end
 
@@ -72,7 +72,7 @@ defmodule AntedeguemonChecks.Warning.DuplicatedAliasTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.DuplicatedAlias)
+      |> run_check(MyCredoChecks.Warning.DuplicatedAlias)
       |> assert_issue()
     end
   end

@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.RedundantDelegateAlias do
+defmodule MyCredoChecks.Warning.RedundantDelegateAlias do
   use Credo.Check,
     explanations: [
       check: """

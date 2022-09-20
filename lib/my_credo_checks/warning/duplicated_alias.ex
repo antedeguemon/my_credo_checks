@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.DuplicatedAlias do
+defmodule MyCredoChecks.Warning.DuplicatedAlias do
   use Credo.Check
 
   def run(source_file, params \\ []) do

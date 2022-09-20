@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Consistency.DescribeArity do
+defmodule MyCredoChecks.Consistency.DescribeArity do
   use Credo.Check, param_defaults: [ignored_functions: []]
 
   def run(source_file, params \\ []) do

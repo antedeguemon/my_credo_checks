@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.RedundantDelegateAliasTest do
+defmodule MyCredoChecks.Warning.RedundantDelegateAliasTest do
   use Credo.Test.Case
 
   describe "ok" do
@@ -9,7 +9,7 @@ defmodule AntedeguemonChecks.Warning.RedundantDelegateAliasTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.RedundantDelegateAlias)
+      |> run_check(MyCredoChecks.Warning.RedundantDelegateAlias)
       |> refute_issues()
     end
   end
@@ -22,7 +22,7 @@ defmodule AntedeguemonChecks.Warning.RedundantDelegateAliasTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.RedundantDelegateAlias)
+      |> run_check(MyCredoChecks.Warning.RedundantDelegateAlias)
       |> assert_issue()
     end
   end

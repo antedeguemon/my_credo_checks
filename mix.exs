@@ -1,15 +1,15 @@
-defmodule AntedeguemonChecks.MixProject do
+defmodule MyCredoChecks.MixProject do
   use Mix.Project
 
   @version "0.1.2"
 
   def project do
     [
-      app: :antedeguemon_checks,
+      app: :my_credo_checks,
       deps: deps(),
       description: "@antedeguemon's Credo checks",
       elixir: "~> 1.10",
-      name: "AntedeguemonChecks",
+      name: "MyCredoChecks",
       start_permanent: false,
       version: @version
     ]

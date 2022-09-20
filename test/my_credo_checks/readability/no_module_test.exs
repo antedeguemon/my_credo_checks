@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Readability.NoModuleTest do
+defmodule MyCredoChecks.Readability.NoModuleTest do
   use Credo.Test.Case
 
   describe "ok" do
@@ -14,7 +14,7 @@ defmodule AntedeguemonChecks.Readability.NoModuleTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Readability.NoModule)
+      |> run_check(MyCredoChecks.Readability.NoModule)
       |> refute_issues()
     end
   end
@@ -31,7 +31,7 @@ defmodule AntedeguemonChecks.Readability.NoModuleTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Readability.NoModule)
+      |> run_check(MyCredoChecks.Readability.NoModule)
       |> assert_issue()
     end
 
@@ -42,7 +42,7 @@ defmodule AntedeguemonChecks.Readability.NoModuleTest do
       end
       )
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Readability.NoModule)
+      |> run_check(MyCredoChecks.Readability.NoModule)
       |> assert_issue()
     end
 
@@ -56,7 +56,7 @@ defmodule AntedeguemonChecks.Readability.NoModuleTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Readability.NoModule)
+      |> run_check(MyCredoChecks.Readability.NoModule)
       |> assert_issue()
     end
 
@@ -67,7 +67,7 @@ defmodule AntedeguemonChecks.Readability.NoModuleTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Readability.NoModule)
+      |> run_check(MyCredoChecks.Readability.NoModule)
       |> assert_issue()
     end
 
@@ -78,7 +78,7 @@ defmodule AntedeguemonChecks.Readability.NoModuleTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Readability.NoModule)
+      |> run_check(MyCredoChecks.Readability.NoModule)
       |> assert_issue()
     end
   end

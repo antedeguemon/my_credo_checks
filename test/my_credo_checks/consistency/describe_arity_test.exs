@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Consistency.DescribeArityTest do
+defmodule MyCredoChecks.Consistency.DescribeArityTest do
   use Credo.Test.Case
 
   describe "ok" do
@@ -14,7 +14,7 @@ defmodule AntedeguemonChecks.Consistency.DescribeArityTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Consistency.DescribeArity)
+      |> run_check(MyCredoChecks.Consistency.DescribeArity)
       |> refute_issues()
     end
 
@@ -30,7 +30,7 @@ defmodule AntedeguemonChecks.Consistency.DescribeArityTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Consistency.DescribeArity)
+      |> run_check(MyCredoChecks.Consistency.DescribeArity)
       |> refute_issues()
     end
 
@@ -49,7 +49,7 @@ defmodule AntedeguemonChecks.Consistency.DescribeArityTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Consistency.DescribeArity)
+      |> run_check(MyCredoChecks.Consistency.DescribeArity)
       |> refute_issues()
     end
   end
@@ -66,7 +66,7 @@ defmodule AntedeguemonChecks.Consistency.DescribeArityTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Consistency.DescribeArity)
+      |> run_check(MyCredoChecks.Consistency.DescribeArity)
       |> assert_issue()
     end
 
@@ -81,7 +81,7 @@ defmodule AntedeguemonChecks.Consistency.DescribeArityTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Consistency.DescribeArity)
+      |> run_check(MyCredoChecks.Consistency.DescribeArity)
       |> assert_issue()
     end
 
@@ -96,7 +96,7 @@ defmodule AntedeguemonChecks.Consistency.DescribeArityTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Consistency.DescribeArity)
+      |> run_check(MyCredoChecks.Consistency.DescribeArity)
       |> assert_issue()
     end
   end

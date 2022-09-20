@@ -68,12 +68,12 @@
         #
         ## Custom checks
         #
-        {AntedeguemonChecks.Check.Readability.NoModule, []},
-        {AntedeguemonChecks.Check.Warning.DuplicatedAlias, []},
-        {AntedeguemonChecks.Check.Warning.RedundantDelegateAlias, []},
-        {AntedeguemonChecks.Check.Warning.RejectTags, []},
-        {AntedeguemonChecks.Check.Warning.UnspecifiedAsyncTestCase, [excluded: ["Credo.Test.Case"]]},
-        {AntedeguemonChecks.Check.Consistency.ValidateDescribesArity, [ignored_functions: [:changeset]]},
+        {MyCredoChecks.Readability.NoModule, []},
+        {MyCredoChecks.Warning.DuplicatedAlias, []},
+        {MyCredoChecks.Warning.RedundantDelegateAlias, []},
+        {MyCredoChecks.Warning.RejectTags, []},
+        {MyCredoChecks.Warning.UnspecifiedAsyncTestCase, [excluded: ["Credo.Test.Case"]]},
+        {MyCredoChecks.Consistency.ValidateDescribesArity, [ignored_functions: [:changeset]]},
 
         #
         ## Consistency Checks

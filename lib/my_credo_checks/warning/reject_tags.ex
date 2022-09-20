@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.RejectTags do
+defmodule MyCredoChecks.Warning.RejectTags do
   use Credo.Check,
     explanations: [
       check: """

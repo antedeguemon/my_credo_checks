@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.RejectTagsTest do
+defmodule MyCredoChecks.Warning.RejectTagsTest do
   use Credo.Test.Case
 
   describe "ok" do
@@ -13,7 +13,7 @@ defmodule AntedeguemonChecks.Warning.RejectTagsTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.RejectTags)
+      |> run_check(MyCredoChecks.Warning.RejectTags)
       |> refute_issues()
     end
   end
@@ -26,7 +26,7 @@ defmodule AntedeguemonChecks.Warning.RejectTagsTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.RejectTags)
+      |> run_check(MyCredoChecks.Warning.RejectTags)
       |> assert_issue()
     end
 
@@ -37,7 +37,7 @@ defmodule AntedeguemonChecks.Warning.RejectTagsTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.RejectTags)
+      |> run_check(MyCredoChecks.Warning.RejectTags)
       |> assert_issue()
     end
 
@@ -48,7 +48,7 @@ defmodule AntedeguemonChecks.Warning.RejectTagsTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.RejectTags)
+      |> run_check(MyCredoChecks.Warning.RejectTags)
       |> assert_issue()
     end
   end

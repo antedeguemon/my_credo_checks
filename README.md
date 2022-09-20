@@ -1,15 +1,15 @@
-# antedeguemon_checks
+# my_credo_checks
 
 This is a collection of my personal (and highly experimental) Credo checks.
 
 ## Installation
 
-1. Install `antedeguemon_checks` as a dependency:
+1. Install `my_credo_checks` as a dependency:
 
 ```elixir
 def deps do
   [
-    {:antedeguemon_checks, "~> 0.1.2"}
+    {:my_credo_checks, "~> 0.1.2"}
   ]
 end
 ```
@@ -19,12 +19,12 @@ end
 ```elixir
 # ...
   checks: [
-    {AntedeguemonChecks.Consistency.DescribeArity, []},
-    {AntedeguemonChecks.Readability.NoModule, []},
-    {AntedeguemonChecks.Warning.DuplicatedAlias, []},
-    {AntedeguemonChecks.Warning.RedundantDelegateAlias, []},
-    {AntedeguemonChecks.Warning.RejectTags, []},
-    {AntedeguemonChecks.Warning.UnspecifiedAsync, []}
+    {MyCredoChecks.Consistency.DescribeArity, []},
+    {MyCredoChecks.Readability.NoModule, []},
+    {MyCredoChecks.Warning.DuplicatedAlias, []},
+    {MyCredoChecks.Warning.RedundantDelegateAlias, []},
+    {MyCredoChecks.Warning.RejectTags, []},
+    {MyCredoChecks.Warning.UnspecifiedAsync, []}
     # ...
   ]
 ```

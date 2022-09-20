@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.UnspecifiedAsync do
+defmodule MyCredoChecks.Warning.UnspecifiedAsync do
   use Credo.Check,
     explanations: [
       check: """

@@ -1,4 +1,4 @@
-defmodule AntedeguemonChecks.Warning.UnspecifiedAsyncTest do
+defmodule MyCredoChecks.Warning.UnspecifiedAsyncTest do
   use Credo.Test.Case
 
   describe "ok" do
@@ -11,7 +11,7 @@ defmodule AntedeguemonChecks.Warning.UnspecifiedAsyncTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.UnspecifiedAsync)
+      |> run_check(MyCredoChecks.Warning.UnspecifiedAsync)
       |> refute_issues()
     end
 
@@ -22,7 +22,7 @@ defmodule AntedeguemonChecks.Warning.UnspecifiedAsyncTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.UnspecifiedAsync)
+      |> run_check(MyCredoChecks.Warning.UnspecifiedAsync)
       |> refute_issues()
     end
 
@@ -35,7 +35,7 @@ defmodule AntedeguemonChecks.Warning.UnspecifiedAsyncTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.UnspecifiedAsync)
+      |> run_check(MyCredoChecks.Warning.UnspecifiedAsync)
       |> refute_issues()
     end
 
@@ -59,7 +59,7 @@ defmodule AntedeguemonChecks.Warning.UnspecifiedAsyncTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.UnspecifiedAsync)
+      |> run_check(MyCredoChecks.Warning.UnspecifiedAsync)
       |> assert_issue()
     end
 
@@ -70,7 +70,7 @@ defmodule AntedeguemonChecks.Warning.UnspecifiedAsyncTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.UnspecifiedAsync)
+      |> run_check(MyCredoChecks.Warning.UnspecifiedAsync)
       |> assert_issue()
     end
 
@@ -81,7 +81,7 @@ defmodule AntedeguemonChecks.Warning.UnspecifiedAsyncTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.UnspecifiedAsync)
+      |> run_check(MyCredoChecks.Warning.UnspecifiedAsync)
       |> assert_issue()
     end
   end
