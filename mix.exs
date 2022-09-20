@@ -1,7 +1,7 @@
 defmodule MyCredoChecks.MixProject do
   use Mix.Project
 
-  @version "0.1.2"
+  @version "0.1.3"
 
   def project do
     [
@@ -11,7 +11,8 @@ defmodule MyCredoChecks.MixProject do
       elixir: "~> 1.10",
       name: "MyCredoChecks",
       start_permanent: false,
-      version: @version
+      version: @version,
+      package: package()
     ]
   end
 
@@ -23,7 +24,15 @@ defmodule MyCredoChecks.MixProject do
 
   defp deps do
     [
-      {:credo, "~> 1.5"}
+      {:credo, "~> 1.6"}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["antedeguemon"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/antedeguemon/my_credo_checks"}
     ]
   end
 end
