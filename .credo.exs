@@ -41,7 +41,7 @@
       # If you create your own checks, you must specify the source files for
       # them here, so they can be loaded by Credo before running the analysis.
       #
-      # requires: ["lib/"],
+      requires: ["#{__DIR__}/lib/credo_checks/"],
       #
       # If you want to enforce a style guide and need a more traditional linting
       # experience, you can change `strict` to `true` below:
@@ -68,12 +68,20 @@
         #
         ## Custom checks
         #
+
+        # Consistency
+        {MyCredoChecks.Consistency.ValidateDescribesArity, [ignored_functions: [:changeset]]},
+
+        # Readability
+
         {MyCredoChecks.Readability.NoModule, []},
+
+        # Warnings
+
         {MyCredoChecks.Warning.DuplicatedAlias, []},
         {MyCredoChecks.Warning.RedundantDelegateAlias, []},
         {MyCredoChecks.Warning.RejectTags, []},
         {MyCredoChecks.Warning.UnspecifiedAsyncTestCase, [excluded: ["Credo.Test.Case"]]},
-        {MyCredoChecks.Consistency.ValidateDescribesArity, [ignored_functions: [:changeset]]},
 
         #
         ## Consistency Checks

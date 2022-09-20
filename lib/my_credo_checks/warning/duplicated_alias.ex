@@ -1,5 +1,5 @@
 defmodule MyCredoChecks.Warning.DuplicatedAlias do
-  use Credo.Check
+  use Credo.Check, category: :warning, base_priority: :high
 
   def run(source_file, params \\ []) do
     issue_meta = IssueMeta.for(source_file, params)
