@@ -46,7 +46,7 @@ defmodule MyCredoChecks.Warning.UnspecifiedAsyncTest do
       end
       """
       |> to_source_file()
-      |> run_check(AntedeguemonChecks.Warning.UnspecifiedAsync)
+      |> run_check(MyCredoChecks.Warning.UnspecifiedAsync)
       |> refute_issues()
     end
   end
